@@ -40,28 +40,32 @@ const ChatbotApp = () => {
   };
 
   return (
-    <div className="chatbot-container">
-      <div className="chatbox">
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`message ${message.user === "bot" ? "bot" : "user"}`}
-          >
-            {message.text}
-          </div>
-        ))}
-        {isLoading && <div className="message bot">Bot is typing...</div>}
+    <>
+    <div className="whole">
+      <div className="chatbot-container">
+        <div className="chatbox">
+          {messages.map((message, index) => (
+            <div
+              key={index}
+              className={`message ${message.user === "bot" ? "bot" : "user"}`}
+            >
+              {message.text}
+            </div>
+          ))}
+          {isLoading && <div className="message bot">Bot is typing...</div>}
+        </div>
+        <div className="input-container">
+          <input
+            type="text"
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            placeholder="Type your prompt..."
+          />
+          <button onClick={sendMessage}>Send</button>
+        </div>
       </div>
-      <div className="input-container">
-        <input
-          type="text"
-          value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
-          placeholder="Type your message..."
-        />
-        <button onClick={sendMessage}>Send</button>
       </div>
-    </div>
+    </>
   );
 };
 
